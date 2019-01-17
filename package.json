@@ -1,0 +1,32 @@
+{
+  "name": "@tsb/rrest-server",
+  "version": "0.1.0",
+  "description": "the node server executing r scripts for flusshygiene",
+  "main": "node-app/dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "nodemon"
+  },
+  "author": "Fabian Morón Zirfas",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/koa": "^2.0.48",
+    "@types/koa-router": "^7.0.37",
+    "cz-conventional-changelog": "^2.1.0",
+    "nodemon": "^1.18.9",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.12.1",
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "@types/koa-json": "^2.0.18",
+    "koa": "^2.6.2",
+    "koa-json": "^2.0.2",
+    "koa-router": "^7.4.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

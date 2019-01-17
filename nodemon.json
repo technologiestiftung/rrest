@@ -1,0 +1,8 @@
+{
+    "ignore": ["**/*.test.ts", "**/*.spec.ts", ".git", "node_modules"],
+    "watch": ["./node-app/src"],
+    "exec": "ts-node node-app/src/index.ts",
+    "ext": "ts",
+    "restartable": "rs",
+    "verbose": true
+}

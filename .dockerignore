@@ -1,0 +1,6 @@
+.Rhistory
+docker-compose.yml
+Dockerfile
+r-server/packrat/lib*/
+r-server/packrat/src/*
+test-tools/*
