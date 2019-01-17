@@ -23,8 +23,29 @@ Then in R run:
 ```R
 install.packages("packrat")
 packrat::restore()
-install.packages('jsonlite')
-packrat::snapshot()
 q()
 ```
 
+## Development
+
+### R
+
+Run R
+
+```bash
+cd r-scripts
+R
+```
+
+If you need to install libraries in R - run: 
+
+```R
+install.packages('jsonlite')
+# packrat should have auto snapshot enabled
+# if the package doesn't show up in
+# r-scripts/packrat/packrat.lock
+# run
+packrat::snapshot()
+# all local dependencies will be saved into
+# the packrat folder and can be restored
+```
