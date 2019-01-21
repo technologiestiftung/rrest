@@ -20,7 +20,7 @@ vignettes/*.pdf
 rsconnect/
 # packrat
 r-scripts/packrat/lib*/
-r-scripts/packrat/src/*
+# r-scripts/packrat/src/*
 
 # node
 
