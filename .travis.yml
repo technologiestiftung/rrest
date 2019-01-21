@@ -9,8 +9,9 @@ cache:
   directories:
   - node_modules
 before_install:
-- mkdir -p $HOME/R/libs/
-- echo 'R_LIBS_USER="$HOME/R/libs"' >  $HOME/.Renviron
+- mkdir -p /home/travis/R/libs/
+- echo 'R_LIBS_USER="/home/travis/R/libs"' >  /home/travis/.Renviron
+- export R_LIBS_USER="/home/travis/R/libs"
 - sudo apt-get install r-base
 - R -e 'install.packages("packrat", "/home/travis/R/libs", repos="http://cran.us.r-project.org");'
 - R -e 'packrat::restore(project = "/r-scripts");'
