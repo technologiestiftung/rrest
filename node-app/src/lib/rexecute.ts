@@ -1,41 +1,53 @@
 import { spawn } from 'child_process';
-import {resolve} from 'path';
+import path from 'path';
 
 // import util from 'util';
 // import { resolve } from 'dns';
 // const spawn = util.promisify(child_process.spawn);
 
+export interface IResponse {
+  data: string;
+  errors: Error[];
+  code: number|null;
+}
 
-export default function rexecute() {
+export default function rexecute(rFilePath: string, indata: object|string = ''): Promise<IResponse> {
   // process.stdout.write(`rexecute ${process.cwd()}\n`);
   const options = {};
-  const args: Array<string> = ['--vanilla', resolve(process.cwd(), './r-scripts/entrypoint.R')];
-  return new Promise((resolve, reject) => {
+  const args: string[] = ['--vanilla', path.resolve(process.cwd(), rFilePath)];
+
+  const promise = new Promise<IResponse>((resolve, reject) => {
+    const response: IResponse = {
+      code: null,
+      data: '',
+      errors: [],
+    };
     const rscript = spawn('RScript', args, options);
-    const data: Array<string> = [];
-    const errors: Array<Error> = [];
-    rscript.stderr.on('data', (err) => {
-      // reject(err);
-      errors.push(err.toString());
-    })
-    rscript.stdout.on('data', (d) => {
-      data.push(d.toString());
-    })
-    // rscript.on('exit', (code)=>{
-    //   excode = code;
-    // })
+
+    rscript.stdin.setDefaultEncoding('utf-8');
+    rscript.stdout.setEncoding('utf-8');
+    rscript.stdin.write(JSON.stringify(indata));
+    rscript.stdin.write('\r\n');
+    rscript.stdin.end();
+
+    rscript.stderr.on('data', (err: Error) => {
+      response.errors.push(err);
+    });
+    rscript.stdout.on('data', (chunk: string) => {
+      // console.log(chunk);
+      response.data += chunk;
+    });
     rscript.on('close', (code) => {
-      data.forEach(d => d.replace('\\',''));
-      const resp = {
-        data: data,
-        errors: errors,
-        code: code
-      };
+      // data.forEach(d => d.replace('\\',''));
+      response.code = code;
       if (code === 0) {
-        resolve(resp);
+        response.data = JSON.parse(response.data);
+        resolve(response);
       } else {
-        reject(resp);
+        reject(Error('non zero exit code'));
       }
-    })
+    });
   });
+
+  return promise;
 }

@@ -1,24 +1,38 @@
 import Koa from 'koa';
-import Router from 'koa-router';
-import rexecute from './lib/rexecute';
+import bodyParser from 'koa-bodyparser';
 import json from 'koa-json';
+import mount from 'koa-mount';
+// import Router from 'koa-router';
+import serve from 'koa-static';
+import path from 'path';
+import rexecute from './lib/rexecute';
 
-const app =  new Koa();
-const router = new Router();
+const api =  new Koa();
+const pub = new Koa();
+const app = new Koa();
+// const router = new Router();
 
 const PORT = process.env.PORT || 3000;
-app.use(json({ pretty: false, param: 'pretty' }));
+// app.use(mount('/static/', serve(path.resolve(process.cwd(), './node-app/public'))));
+pub.use(serve(path.resolve(process.cwd(), './node-app/public')));
+api.use(json({ pretty: false, param: 'pretty' }));
+api.use(bodyParser());
 
-router.get('/*', async (ctx:Koa.Context) =>{
-  const response = await rexecute();
-  ctx.body = response;
-  // response.then(data => ctx.body = data).catch(err => ctx.body = err);
-
-  // ctx.body = 'Hello World';
+// router.get('/get', async (ctx: Koa.Context) => {
+//     ctx.body = response;
+//     // response.then(data => ctx.body = data).catch(err => ctx.body = err);
+//     // ctx.body = 'Hello World';
+//   });
+api.use( async (ctx: Koa.Context) => {
+    const response = await rexecute('./r-scripts/entrypoint.R', ctx.request.body);
+  // process.stdout.write();
+  // console.log(JSON.stringify(ctx.request.body));
+    ctx.body = JSON.stringify(response);
 });
-app.use(router.routes());
-
-app.listen(PORT, async ()=>{
+// api.use(router.routes());
+app.use(mount('/submit', api));
+app.use(mount('/', pub));
+app.listen(PORT, async () => {
 
   process.stdout.write(`listening on http://localhost:${PORT}\n`);
   // process.stdout.write(`${__dirname}\n`);
@@ -27,5 +41,5 @@ app.listen(PORT, async ()=>{
   //   process.stdout.write(err);
   // });
   // process.stdout.write(JSON.stringify(response));
-})
+});
 // console.log('hello world');
