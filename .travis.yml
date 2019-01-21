@@ -1,4 +1,4 @@
-sudo: true
+sudo: false
 language: node_js
 node_js:
   - "10"
@@ -9,6 +9,8 @@ cache:
   directories:
   - node_modules
 before_install:
+- mkdir ~/R/; mkdir ~/R/libs/
+- echo 'R_LIBS_USER="~/R/library"' >  $HOME/.Renviron
 - sudo apt-get install r-base
 - R -e 'install.packages("packrat");'
 - R -e 'packrat::restore(project = "/r-scripts");'
