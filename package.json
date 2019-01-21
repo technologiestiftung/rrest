@@ -5,24 +5,40 @@
   "main": "node-app/dist/index.js",
   "scripts": {
     "test": "jest",
+    "testWithCoverage": "jest --coverage",
     "dev": "nodemon"
   },
   "author": "Fabian Morón Zirfas",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^23.3.13",
     "@types/koa": "^2.0.48",
-    "@types/koa-router": "^7.0.37",
+    "@types/koa-mount": "^3.0.1",
+    "@types/koa-router": "^7.0.38",
+    "@typescript-eslint/eslint-plugin": "^1.0.0",
+    "@typescript-eslint/eslint-plugin-tslint": "^1.0.0",
+    "@typescript-eslint/parser": "^1.0.0",
     "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^5.12.1",
+    "eslint-config-unobtrusive": "^1.2.2",
+    "jest": "^23.6.0",
+    "koa-mount": "^4.0.0",
     "nodemon": "^1.18.9",
+    "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",
     "tslint": "^5.12.1",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.4"
   },
   "dependencies": {
+    "@types/koa-bodyparser": "^4.2.1",
     "@types/koa-json": "^2.0.18",
+    "@types/koa-static": "^4.0.0",
+    "@types/node": "^10.12.18",
     "koa": "^2.6.2",
+    "koa-bodyparser": "^4.2.1",
     "koa-json": "^2.0.2",
-    "koa-router": "^7.4.0"
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0"
   },
   "config": {
     "commitizen": {
