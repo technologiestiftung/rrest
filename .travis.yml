@@ -9,7 +9,7 @@ cache:
   directories:
   - node_modules
 before_install:
-- sudo apt-get install r-base
+- apt-get install r-base
 - R -e 'install.packages("packrat");'
 - R -e 'packrat::restore(project = "/r-scripts");'
 - npm update
