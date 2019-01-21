@@ -37,7 +37,7 @@ cd r-scripts
 R
 ```
 
-If you need to install libraries in R - run: 
+If you need to install libraries in R - run:
 
 ```R
 install.packages('jsonlite')
@@ -48,4 +48,10 @@ install.packages('jsonlite')
 packrat::snapshot()
 # all local dependencies will be saved into
 # the packrat folder and can be restored
+```
+
+## Tests
+
+```
+npm test
 ```
