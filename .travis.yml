@@ -9,12 +9,12 @@ cache:
   directories:
   - node_modules
 before_install:
-- mkdir -p /home/travis/R/libs/
-- echo 'R_LIBS_USER="/home/travis/R/libs"' >  /home/travis/.Renviron
-- export R_LIBS_USER="/home/travis/R/libs"
+- mkdir -p ${TRAVIS_BUILD_DIR}/R/libs/
+- echo 'R_LIBS_USER="${TRAVIS_BUILD_DIR}/R/libs"' >  ${TRAVIS_BUILD_DIR}/.Renviron
+- export R_LIBS_USER="${TRAVIS_BUILD_DIR}/R/libs"
 - sudo apt-get install r-base
-- R -e 'install.packages("packrat", "/home/travis/R/libs", repos="http://cran.us.r-project.org");'
-- R -e 'packrat::restore(project = "/home/travis/r-scripts");'
+- R -e "install.packages('packrat', '${TRAVIS_BUILD_DIR}/R/libs', repos='http://cran.us.r-project.org');"
+- R -e "packrat::restore(project = '${TRAVIS_BUILD_DIR}/r-scripts');"
 - npm update
 install:
 - npm install
