@@ -9,10 +9,10 @@ cache:
   directories:
   - node_modules
 before_install:
-- mkdir ~/R/; mkdir ~/R/libs/
-- echo 'R_LIBS_USER="~/R/library"' >  $HOME/.Renviron
+- mkdir -p $HOME/R/libs/
+- echo 'R_LIBS_USER="$HOME/R/libs"' >  $HOME/.Renviron
 - sudo apt-get install r-base
-- R -e 'install.packages("packrat");'
+- R -e 'install.packages("packrat", "/home/travis/R/libs");'
 - R -e 'packrat::restore(project = "/r-scripts");'
 - npm update
 install:
