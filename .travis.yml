@@ -14,7 +14,7 @@ before_install:
 - export R_LIBS_USER="/home/travis/R/libs"
 - sudo apt-get install r-base
 - R -e 'install.packages("packrat", "/home/travis/R/libs", repos="http://cran.us.r-project.org");'
-- R -e 'packrat::restore(project = "/r-scripts");'
+- R -e 'packrat::restore(project = "/home/travis/r-scripts");'
 - npm update
 install:
 - npm install
