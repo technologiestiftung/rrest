@@ -12,7 +12,7 @@ before_install:
 - mkdir -p $HOME/R/libs/
 - echo 'R_LIBS_USER="$HOME/R/libs"' >  $HOME/.Renviron
 - sudo apt-get install r-base
-- R -e 'install.packages("packrat", "/home/travis/R/libs");'
+- R -e 'install.packages("packrat", "/home/travis/R/libs", repos="http://cran.us.r-project.org");'
 - R -e 'packrat::restore(project = "/r-scripts");'
 - npm update
 install:
