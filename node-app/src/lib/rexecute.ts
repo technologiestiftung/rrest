@@ -22,7 +22,7 @@ export default function rexecute(rFilePath: string, indata: object|string = ''):
       data: '',
       errors: [],
     };
-    const rscript = spawn('RScript', args, options);
+    const rscript = spawn('Rscript', args, options);
 
     rscript.stdin.setDefaultEncoding('utf-8');
     rscript.stdout.setEncoding('utf-8');

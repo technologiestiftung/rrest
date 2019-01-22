@@ -1,5 +1,7 @@
 # Node Rest API written with Koa that executes R scripts
 
+[![Build Status](https://travis-ci.org/technologiestiftung/rrest.svg?branch=master)](https://travis-ci.org/technologiestiftung/rrest)
+
 Written with [Koa](https://www.npmjs.com/package/koa) (lightweight Express.js alternative. suitable for small APIs) in Typescript.  
 
 ## How To
