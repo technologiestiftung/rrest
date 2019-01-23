@@ -1,6 +1,10 @@
 version: '3'
 services:
   rrest:
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+    restart: always
     build: .
     ports:
       - "8080:8080"
