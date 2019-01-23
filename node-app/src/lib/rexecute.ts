@@ -24,7 +24,7 @@ function rprocess(opts: IProcOpts): Promise <IResponse> {
     const rscript = spawn('Rscript', args, options);
     rscript.stdout.setEncoding('utf-8');
     rscript.stdin.setDefaultEncoding('utf-8');
-    rscript.stdin.write(`${data}'\r\n'`);
+    rscript.stdin.write(`${data}\r\n`);
     rscript.stdin.end();
     rscript.stderr.on('data', (err: Error) => { response.errors.push(err); });
     rscript.stdout.on('data', (chunk: string) => { response.data += chunk; });
