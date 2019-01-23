@@ -10,20 +10,17 @@ export interface IResponse {
   errors: Error[];
   code: number|null;
 }
-
+const response: IResponse = {
+  code: null,
+  data: '',
+  errors: [],
+};
 export default function rexecute(rFilePath: string, indata: object|string = ''): Promise<IResponse> {
   // process.stdout.write(`rexecute ${process.cwd()}\n`);
   const options = {};
   const args: string[] = ['--vanilla', path.resolve(process.cwd(), rFilePath)];
-
-  const promise = new Promise<IResponse>((resolve, reject) => {
-    const response: IResponse = {
-      code: null,
-      data: '',
-      errors: [],
-    };
+  return new Promise<IResponse>((resolve, reject) => {
     const rscript = spawn('Rscript', args, options);
-
     rscript.stdin.setDefaultEncoding('utf-8');
     rscript.stdout.setEncoding('utf-8');
     rscript.stdin.write(JSON.stringify(indata));
@@ -34,11 +31,9 @@ export default function rexecute(rFilePath: string, indata: object|string = ''):
       response.errors.push(err);
     });
     rscript.stdout.on('data', (chunk: string) => {
-      // console.log(chunk);
       response.data += chunk;
     });
     rscript.on('close', (code) => {
-      // data.forEach(d => d.replace('\\',''));
       response.code = code;
       if (code === 0) {
         response.data = JSON.parse(response.data);
@@ -48,6 +43,4 @@ export default function rexecute(rFilePath: string, indata: object|string = ''):
       }
     });
   });
-
-  return promise;
 }
