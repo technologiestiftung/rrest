@@ -1,7 +1,7 @@
 
-setwd('./r-scripts')
+setwd("./r-scripts")
 source(".Rprofile")
-library('jsonlite')
+library("jsonlite")
 
 main <- function () {
   con <-  file("stdin")

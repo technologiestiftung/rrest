@@ -1,4 +1,12 @@
 {
   "eslint.enable": false,
-  "tslint.enable": true
+  "tslint.enable": true,
+  "spellright.language": [
+    "en",
+    "de"
+  ],
+  "spellright.documentTypes": [
+    "markdown",
+    "latex"
+  ]
 }
