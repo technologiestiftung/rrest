@@ -22,20 +22,15 @@ function rprocess(opts: IProcOpts): Promise <IResponse> {
   };
   return new Promise<IResponse>((resolve, reject) => {
     const rscript = spawn('Rscript', args, options);
-    rscript.stdin.setDefaultEncoding('utf-8');
     rscript.stdout.setEncoding('utf-8');
-    rscript.stdin.write(data);
-    rscript.stdin.write('\r\n');
+    rscript.stdin.setDefaultEncoding('utf-8');
+    rscript.stdin.write(`${data}'\r\n'`);
     rscript.stdin.end();
-    rscript.stderr.on('data', (err: Error) => {
-      response.errors.push(err);
-    });
-    rscript.stdout.on('data', (chunk: string) => {
-      response.data += chunk;
-    });
+    rscript.stderr.on('data', (err: Error) => { response.errors.push(err); });
+    rscript.stdout.on('data', (chunk: string) => { response.data += chunk; });
     rscript.on('close', (code) => {
-      response.code = code;
       if (code === 0) {
+        response.code = code;
         response.data = JSON.parse(response.data);
         resolve(response);
       } else {
