@@ -10,23 +10,20 @@ export interface IResponse {
   errors: Error[];
   code: number|null;
 }
-export default function rexecute(rFilePath: string, indata: object|string = ''): Promise<IResponse> {
+
+export async function rPromise(args: string[], options: {}, data: string): Promise <IResponse> {
   const response: IResponse = {
     code: null,
     data: '',
     errors: [],
   };
-  // process.stdout.write(`rexecute ${process.cwd()}\n`);
-  const options = {};
-  const args: string[] = ['--vanilla', path.resolve(process.cwd(), rFilePath)];
   return new Promise<IResponse>((resolve, reject) => {
     const rscript = spawn('Rscript', args, options);
     rscript.stdin.setDefaultEncoding('utf-8');
     rscript.stdout.setEncoding('utf-8');
-    rscript.stdin.write(JSON.stringify(indata));
+    rscript.stdin.write(data);
     rscript.stdin.write('\r\n');
     rscript.stdin.end();
-
     rscript.stderr.on('data', (err: Error) => {
       response.errors.push(err);
     });
@@ -43,4 +40,10 @@ export default function rexecute(rFilePath: string, indata: object|string = ''):
       }
     });
   });
+}
+export default function rexecute(rFilePath: string, indata: object|string = ''): Promise<IResponse> {
+  // process.stdout.write(`rexecute ${process.cwd()}\n`);
+  const options = {};
+  const args: string[] = ['--vanilla', path.resolve(process.cwd(), rFilePath)];
+  return rPromise(args, options, JSON.stringify(indata));
 }

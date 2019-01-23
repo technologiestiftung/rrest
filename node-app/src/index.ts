@@ -24,6 +24,7 @@ api.use(bodyParser());
 //     // ctx.body = 'Hello World';
 //   });
 api.use( async (ctx: Koa.Context) => {
+
     const response = await rexecute('./r-scripts/entrypoint.R', ctx.request.body);
   // process.stdout.write();
   // console.log(JSON.stringify(ctx.request.body));
