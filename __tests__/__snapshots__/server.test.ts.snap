@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default testing for server should response with 200 on / 1`] = `
+"<!doctype html>
+
+<html lang=\\"en\\">
+
+<head>
+  <meta charset=\\"utf-8\\">
+  <meta http-equiv=\\"x-ua-compatible\\" content=\\"ie=edge\\">
+  <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Page Title</title>
+  <meta name=\\"description\\" content=\\"something\\">
+  <meta name=\\"author\\" content=\\"me\\">
+</head>
+
+<body>
+  <div class=\\"main\\">
+    <form action=\\"http://locahost:3000/submit\\" method=\\"get\\" class=\\"form\\">
+      <div>
+        <label for=\\"content\\">
+          content as JSON
+        </label>
+        <input type=\\"text\\" name=\\"content\\" id=\\"content\\" required>
+        <div>
+          <input type=\\"submit\\" value=\\"Send! \\">
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>"
+`;

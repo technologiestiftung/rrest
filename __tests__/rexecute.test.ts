@@ -3,32 +3,37 @@ import {IResponse} from '../node-app/src/lib/rexecute';
 const rFilePath = './r-scripts/entrypoint.R';
 
 describe('rexecute returns', () => {
-  it('should be an object', async () => {
+  it('should return a promise', () => {
+    const result = rexecute(rFilePath);
+    expect(result).toBeInstanceOf(Promise);
+  });
+
+  it('resolved Promise should be an object', async () => {
     expect.assertions(1);
     const result = await rexecute(rFilePath);
     expect(result).toBeInstanceOf(Object);
   });
-  it('should have a property code', async () => {
+  it('resolved Promise should have a property code', async () => {
     expect.assertions(1);
     const result = await rexecute(rFilePath, 'foo');
     expect(result).toHaveProperty('code');
   });
-  it('should have a property data', async () => {
+  it('resolved Promise should have a property data', async () => {
     expect.assertions(1);
     const result = await rexecute(rFilePath, 'bah');
     expect(result).toHaveProperty('data');
   });
-  it('should have a property errors', async () => {
+  it('resolved Promise should have a property errors', async () => {
     expect.assertions(1);
     const result = await rexecute(rFilePath);
     expect(result).toHaveProperty('errors');
   });
-  it('should have a property code with value 0', async () => {
+  it('resolved Promise should have a property code with value 0', async () => {
     expect.assertions(1);
     const result = await rexecute(rFilePath) as IResponse;
     expect(result.code).toBe(0);
   });
-  it('should throw Error', async () => {
+  it('rejected Promise should return Error', async () => {
     expect.assertions(1);
     await expect(rexecute('./r--scripts/entrypoint.R')).rejects.toMatchObject({message: 'non zero exit code'});
   });
@@ -49,3 +54,10 @@ describe('rexecute results on input', () => {
     expect(result.data).toBeInstanceOf(Object);
   });
 });
+
+// describe('rpromise function', () => {
+//   it('should return a promise', () => {
+//     expect.assertions(1);
+//     expect(rprocess(['--vanilla', './r--scripts/entrypoint.R'], {}, '{"foo":"bah"}')).;
+//   });
+// });
