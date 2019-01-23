@@ -1,17 +1,20 @@
 import { spawn } from 'child_process';
 import path from 'path';
 
-// import util from 'util';
-// import { resolve } from 'dns';
-// const spawn = util.promisify(child_process.spawn);
-
 export interface IResponse {
   data: string;
   errors: Error[];
   code: number|null;
 }
 
-export async function rPromise(args: string[], options: {}, data: string): Promise <IResponse> {
+interface IProcOpts {
+  args: string[];
+  options: {};
+  data: string;
+}
+
+function rprocess(opts: IProcOpts): Promise <IResponse> {
+  const {args, options, data} = opts;
   const response: IResponse = {
     code: null,
     data: '',
@@ -43,7 +46,12 @@ export async function rPromise(args: string[], options: {}, data: string): Promi
 }
 export default function rexecute(rFilePath: string, indata: object|string = ''): Promise<IResponse> {
   // process.stdout.write(`rexecute ${process.cwd()}\n`);
-  const options = {};
+  // const options = {};
   const args: string[] = ['--vanilla', path.resolve(process.cwd(), rFilePath)];
-  return rPromise(args, options, JSON.stringify(indata));
+  const opts: IProcOpts = {
+    args,
+    data: JSON.stringify(indata),
+    options: {},
+  };
+  return rprocess(opts);
 }
