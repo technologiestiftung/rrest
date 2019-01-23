@@ -10,12 +10,12 @@ export interface IResponse {
   errors: Error[];
   code: number|null;
 }
-const response: IResponse = {
-  code: null,
-  data: '',
-  errors: [],
-};
 export default function rexecute(rFilePath: string, indata: object|string = ''): Promise<IResponse> {
+  const response: IResponse = {
+    code: null,
+    data: '',
+    errors: [],
+  };
   // process.stdout.write(`rexecute ${process.cwd()}\n`);
   const options = {};
   const args: string[] = ['--vanilla', path.resolve(process.cwd(), rFilePath)];

@@ -8,22 +8,22 @@ describe('rexecute returns', () => {
     const result = await rexecute(rFilePath);
     expect(result).toBeInstanceOf(Object);
   });
-  it('should be have a property code', async () => {
+  it('should have a property code', async () => {
     expect.assertions(1);
     const result = await rexecute(rFilePath, 'foo');
     expect(result).toHaveProperty('code');
   });
-  it('should be have a property data', async () => {
+  it('should have a property data', async () => {
     expect.assertions(1);
     const result = await rexecute(rFilePath, 'bah');
     expect(result).toHaveProperty('data');
   });
-  it('should be have a property errors', async () => {
+  it('should have a property errors', async () => {
     expect.assertions(1);
     const result = await rexecute(rFilePath);
     expect(result).toHaveProperty('errors');
   });
-  it('should be have a property code with value 0', async () => {
+  it('should have a property code with value 0', async () => {
     expect.assertions(1);
     const result = await rexecute(rFilePath) as IResponse;
     expect(result.code).toBe(0);
