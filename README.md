@@ -1,6 +1,6 @@
 # Node Rest API written with Koa that executes R scripts
 
-[![Build Status](https://travis-ci.org/technologiestiftung/rrest.svg?branch=master)](https://travis-ci.org/technologiestiftung/rrest) [![issue shield](https://img.shields.io/github/issues-raw/technologiestiftung/rrest.svg)](https://github.com/technologiestiftung/rrest/issues?utf8=%E2%9C%93&q=)
+[![Build Status](https://travis-ci.org/technologiestiftung/rrest.svg?branch=master)](https://travis-ci.org/technologiestiftung/rrest) [![issue shield](https://img.shields.io/github/issues-raw/technologiestiftung/rrest.svg)](https://github.com/technologiestiftung/rrest/issues?utf8=%E2%9C%93&q=) [![Maintainability](https://api.codeclimate.com/v1/badges/2781922c87ab905b1925/maintainability)](https://codeclimate.com/github/technologiestiftung/rrest/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/2781922c87ab905b1925/test_coverage)](https://codeclimate.com/github/technologiestiftung/rrest/test_coverage)
 
 Written with [Koa](https://www.npmjs.com/package/koa) (lightweight Express.js alternative. suitable for small APIs) in Typescript.  
 
