@@ -3,7 +3,7 @@ import path from 'path';
 
 export interface IResponse {
   data: string;
-  errors: Error[];
+  errors: string;
   code: number|null;
 }
 
@@ -18,7 +18,7 @@ function rprocess(opts: IProcOpts): Promise <IResponse> {
   const response: IResponse = {
     code: null,
     data: '',
-    errors: [],
+    errors: '',
   };
   return new Promise<IResponse>((resolve, reject) => {
     const rscript = spawn('Rscript', args, options);
@@ -26,7 +26,7 @@ function rprocess(opts: IProcOpts): Promise <IResponse> {
     rscript.stdin.setDefaultEncoding('utf-8');
     rscript.stdin.write(`${data}\r\n`);
     rscript.stdin.end();
-    rscript.stderr.on('data', (err: Error) => { response.errors.push(err); });
+    rscript.stderr.on('data', (err: Error) => { response.errors += err.toString(); });
     rscript.stdout.on('data', (chunk: string) => { response.data += chunk; });
     rscript.on('close', (code) => {
       if (code === 0) {
@@ -42,6 +42,9 @@ function rprocess(opts: IProcOpts): Promise <IResponse> {
 export default function rexecute(rFilePath: string, indata: object|string = ''): Promise<IResponse> {
   // process.stdout.write(`rexecute ${process.cwd()}\n`);
   // const options = {};
+  if (typeof indata === 'string') {
+    indata = {data: indata};
+  }
   const args: string[] = ['--vanilla', path.resolve(process.cwd(), rFilePath)];
   const opts: IProcOpts = {
     args,
