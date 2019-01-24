@@ -5,7 +5,7 @@ node_js:
   - "10"
 branches:
   only:
-  - master
+    - master
 
 # https://github.com/jtilly/R-travis-container-example/blob/master/.travis.yml
 # install R: use r-packages-precise (https://cran.r-project.org/bin/linux/ubuntu/precise/)
@@ -30,7 +30,7 @@ cache:
     # - $TRAVIS_BUILD_DIR/Rlibs/
     - node_modules
 before_install:
-  - curl https://cloud.r-project.org/bin/linux/ubuntu/xenial-cran35/Release.gpg | sudo apt-key add -
+  - sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
   - add-apt-repository -y 'deb https://cloud.r-project.org/bin/linux/ubuntu/xenial-cran35/'
   - apt-get update -qq
   - apt-get install r-base r-base-dev r-recommended -y
@@ -38,8 +38,8 @@ before_install:
   - echo "R_LIBS=${TRAVIS_BUILD_DIR}" > .Renviron
   - echo 'R_LIBS_USER="${TRAVIS_BUILD_DIR}/Rlibs"' >>  ".Renviron"
   - export R_LIBS_USER="${TRAVIS_BUILD_DIR}/Rlibs"
-# - sudo apt-get install r-base
-# - R -e "install.packages('packrat', '${TRAVIS_BUILD_DIR}/Rlibs', repos='http://cran.us.r-project.org');"
+  # - sudo apt-get install r-base
+  # - R -e "install.packages('packrat', '${TRAVIS_BUILD_DIR}/Rlibs', repos='http://cran.us.r-project.org');"
   - cd ${TRAVIS_BUILD_DIR}/r-scripts
   - R -e "0" --args --bootstrap-packrat
   - R -e "packrat::restore(project = '${TRAVIS_BUILD_DIR}/r-scripts', prompt = FALSE, overwrite.dirty = TRUE, restart = FALSE);"
@@ -48,7 +48,7 @@ before_install:
 install:
   - npm install
 before_script:
-# running code climate
+  # running code climate
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
