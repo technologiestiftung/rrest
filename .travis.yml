@@ -22,9 +22,9 @@ repos:
 cache:
   packages: true
   directories:
-    - $TRAVIS_BUILD_DIR/r-scripts/packrat/src
-    - $TRAVIS_BUILD_DIR/r-scripts/packrat/lib
-    - $TRAVIS_BUILD_DIR/Rlibs/
+    # - $TRAVIS_BUILD_DIR/r-scripts/packrat/src
+    # - $TRAVIS_BUILD_DIR/r-scripts/packrat/lib
+    # - $TRAVIS_BUILD_DIR/Rlibs/
     - node_modules
 before_install:
 - mkdir -p $TRAVIS_BUILD_DIR/Rlibs/
@@ -37,7 +37,7 @@ before_install:
 - R -e "0" --args --bootstrap-packrat
 - R -e "packrat::restore(project = '${TRAVIS_BUILD_DIR}/r-scripts', prompt = FALSE, overwrite.dirty = TRUE, restart = FALSE);"
 - cd ${TRAVIS_BUILD_DIR}
-- npm update
+# - npm update
 install:
 - npm install
 before_script:
