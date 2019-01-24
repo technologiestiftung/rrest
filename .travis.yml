@@ -30,7 +30,7 @@ cache:
     # - $TRAVIS_BUILD_DIR/Rlibs/
     - node_modules
 before_install:
-  - curl https://cloud.r-project.org/bin/linux/ubuntu/xenial-cran35/Release.gpg | apt-key add -
+  - curl https://cloud.r-project.org/bin/linux/ubuntu/xenial-cran35/Release.gpg | sudo apt-key add -
   - add-apt-repository -y 'deb https://cloud.r-project.org/bin/linux/ubuntu/xenial-cran35/'
   - apt-get update -qq
   - apt-get install r-base r-base-dev r-recommended -y
