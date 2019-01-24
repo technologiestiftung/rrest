@@ -21,6 +21,6 @@ describe('default testing for server', () => {
     const response = await request(app.callback())
       .post('/submit')
       .send(obj);
-    expect(response.text).toEqual('{"code":0,"data":{"foo":"bah"},"errors":[]}');
+    expect(response.text).toEqual('{"code":0,"data":{"foo":"bah"},"errors":""}');
   });
 });
