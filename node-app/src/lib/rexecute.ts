@@ -27,7 +27,9 @@ function rprocess(opts: IProcOpts): Promise <IResponse> {
     rscript.stdin.write(`${data}\r\n`);
     rscript.stdin.end();
     rscript.stderr.on('data', (err: Error) => { response.errors.push(err); });
-    rscript.stdout.on('data', (chunk: string) => { response.data += chunk; });
+    rscript.stdout.on('data', (chunk: string) => {
+      response.data += chunk;
+    });
     rscript.on('close', (code) => {
       if (code === 0) {
         response.code = code;
@@ -42,6 +44,9 @@ function rprocess(opts: IProcOpts): Promise <IResponse> {
 export default function rexecute(rFilePath: string, indata: object|string = ''): Promise<IResponse> {
   // process.stdout.write(`rexecute ${process.cwd()}\n`);
   // const options = {};
+  if (typeof indata === 'string') {
+    indata = {data: indata};
+  }
   const args: string[] = ['--vanilla', path.resolve(process.cwd(), rFilePath)];
   const opts: IProcOpts = {
     args,

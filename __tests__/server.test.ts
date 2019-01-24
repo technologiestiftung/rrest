@@ -15,12 +15,12 @@ describe('default testing for server', () => {
       .send({foo: 'bah'});
     expect(response.status).toBe(200);
   });
-  // it('should return the passed object', async () => {
-  //   expect.assertions(1);
-  //   const obj = {foo: 'bah'};
-  //   const response = await request(app.callback())
-  //     .post('/submit')
-  //     .send(obj);
-  //   expect(response.text).toEqual("{\"code\":0,\"data\":[\"{\\\"foo\\\":\\\"bah\\\"}\"],\"errors\":[]}");
-  // });
+  it('should return the passed object', async () => {
+    expect.assertions(1);
+    const obj = {foo: 'bah'};
+    const response = await request(app.callback())
+      .post('/submit')
+      .send(obj);
+    expect(response.text).toEqual('{"code":0,"data":{"foo":"bah"},"errors":[]}');
+  });
 });

@@ -44,13 +44,12 @@ describe('rexecute results on input', () => {
     expect.assertions(2);
     const expected = {foo: 'bah'};
     const result = await rexecute(rFilePath, expected) as IResponse;
-    expect(JSON.parse(result.data)).toMatchObject(expected);
-    expect(result.data).toEqual([JSON.stringify(expected)]);
+    expect(result.data).toMatchObject(expected);
+    expect(result.data).toEqual(expected);
   });
   it('should work with strings as input', async () => {
-    expect.assertions(2);
+    expect.assertions(1);
     const result = await rexecute(rFilePath, 'foo bah baz') as IResponse;
-    expect(result.data).toBeInstanceOf(Array);
     expect(result.data).toBeInstanceOf(Object);
   });
 });
