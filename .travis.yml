@@ -13,12 +13,12 @@ branches:
 addons:
   apt:
     update: true
-    sources:
-    - sourceline: 'deb https://cloud.r-project.org/bin/linux/ubuntu xenial/'
-    packages:
-    - r-base
-    - r-base-core
-    - r-recommended
+    # sources:
+    # - sourceline: 'deb https://cloud.r-project.org/bin/linux/ubuntu xenial/'
+    # packages:
+    # - r-base
+    # - r-base-dev
+    # - r-recommended
 repos:
   CRAN: https://cloud.r-project.org
   ropensci: http://packages.ropensci.org
@@ -30,25 +30,29 @@ cache:
     # - $TRAVIS_BUILD_DIR/Rlibs/
     - node_modules
 before_install:
-- mkdir -p $TRAVIS_BUILD_DIR/Rlibs/
-- echo "R_LIBS=${TRAVIS_BUILD_DIR}" > .Renviron
-- echo 'R_LIBS_USER="${TRAVIS_BUILD_DIR}/Rlibs"' >>  ".Renviron"
-- export R_LIBS_USER="${TRAVIS_BUILD_DIR}/Rlibs"
+  - apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+  - add-apt-repository -y 'deb https://ftp.ussg.iu.edu/CRAN/bin/linux/ubuntu xenial/'
+  - apt-get update -qq -y
+  - apt-get install git r-base r-base-dev r-recommended -y
+  - mkdir -p $TRAVIS_BUILD_DIR/Rlibs/
+  - echo "R_LIBS=${TRAVIS_BUILD_DIR}" > .Renviron
+  - echo 'R_LIBS_USER="${TRAVIS_BUILD_DIR}/Rlibs"' >>  ".Renviron"
+  - export R_LIBS_USER="${TRAVIS_BUILD_DIR}/Rlibs"
 # - sudo apt-get install r-base
 # - R -e "install.packages('packrat', '${TRAVIS_BUILD_DIR}/Rlibs', repos='http://cran.us.r-project.org');"
-- cd ${TRAVIS_BUILD_DIR}/r-scripts
-- R -e "0" --args --bootstrap-packrat
-- R -e "packrat::restore(project = '${TRAVIS_BUILD_DIR}/r-scripts', prompt = FALSE, overwrite.dirty = TRUE, restart = FALSE);"
-- cd ${TRAVIS_BUILD_DIR}
+  - cd ${TRAVIS_BUILD_DIR}/r-scripts
+  - R -e "0" --args --bootstrap-packrat
+  - R -e "packrat::restore(project = '${TRAVIS_BUILD_DIR}/r-scripts', prompt = FALSE, overwrite.dirty = TRUE, restart = FALSE);"
+  - cd ${TRAVIS_BUILD_DIR}
 # - npm update
 install:
-- npm install
+  - npm install
 before_script:
 # running code climate
-- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-- chmod +x ./cc-test-reporter
-- ./cc-test-reporter before-build
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
-- npm test
+  - npm test
 after_script:
-- ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
