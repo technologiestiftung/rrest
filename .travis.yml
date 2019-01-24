@@ -12,10 +12,12 @@ branches:
 # as source which is white listed (https://github.com/travis-ci/apt-source-whitelist/)
 addons:
   apt:
+    update: true
     sources:
-    - r-packages-precise
+    - sourceline: 'deb https://cloud.r-project.org/bin/linux/ubuntu xenial/'
     packages:
-    - r-base-dev
+    - r-base
+    - r-base-core
     - r-recommended
 repos:
   CRAN: https://cloud.r-project.org
