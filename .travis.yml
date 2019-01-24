@@ -30,10 +30,10 @@ cache:
     # - $TRAVIS_BUILD_DIR/Rlibs/
     - node_modules
 before_install:
-  - apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
-  - add-apt-repository -y 'deb https://ftp.ussg.iu.edu/CRAN/bin/linux/ubuntu xenial/'
-  - apt-get update -qq -y
-  - apt-get install git r-base r-base-dev r-recommended -y
+  - curl https://cloud.r-project.org/bin/linux/ubuntu/xenial-cran35/Release.gpg | apt-key add -
+  - add-apt-repository -y 'deb https://cloud.r-project.org/bin/linux/ubuntu/xenial-cran35/'
+  - apt-get update -qq
+  - apt-get install r-base r-base-dev r-recommended -y
   - mkdir -p $TRAVIS_BUILD_DIR/Rlibs/
   - echo "R_LIBS=${TRAVIS_BUILD_DIR}" > .Renviron
   - echo 'R_LIBS_USER="${TRAVIS_BUILD_DIR}/Rlibs"' >>  ".Renviron"
