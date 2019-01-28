@@ -6,6 +6,7 @@ node_js:
 branches:
   only:
     - master
+    - /^greenkeeper/.*$/
 
 # https://github.com/jtilly/R-travis-container-example/blob/master/.travis.yml
 # install R: use r-packages-precise (https://cran.r-project.org/bin/linux/ubuntu/precise/)
