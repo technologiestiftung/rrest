@@ -30,9 +30,7 @@ Written with [Koa](https://www.npmjs.com/package/koa) (lightweight Express.js al
 
 ## Setup
 
-Currently the Docker container is a based in [rocker/r-ver](https://hub.docker.com/r
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-/rocker/r-ver) with R version 3.5.2 which is based on [debian:stretch](https://hub.docker.com/_/debian)
+Currently the Docker container is a based in [rocker/r-ver](https://hub.docker.com/r/rocker/r-ver) with R version 3.5.2 which is based on [debian:stretch](https://hub.docker.com/_/debian)
 
 ### Setup Node.js
 
@@ -136,10 +134,10 @@ docker-compose down
 
 ----
 
-Currently a test version is running on now.sh under https://rrest-myxenmdehg.now.sh but this url will change with every deploy to now.  
+Currently a test version is running on now.sh under https://rrest-api.now.sh but this url will change with every deploy to now.  
 
 ```bash
-curl -X "POST" "https://rrest-myxenmdehg.now.sh/submit" \
+curl -X "POST" "https://rrest-api.now.sh/submit" \
      -H 'Content-Type: application/json; charset=utf-8' \
      -H 'Cookie: __cfduid=d60281f9214e8dd6efea0075d36f598081548239112' \
      -d $'{
