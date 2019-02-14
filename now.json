@@ -1,6 +1,7 @@
 {
   "version": 1,
   "alias":"rrest-flusshygiene",
+  "type":"DOCKER",
   "scale": {
     "bru1": {
       "min": 1,
