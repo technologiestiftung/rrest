@@ -20,7 +20,7 @@
     "@types/koa-mount": "^3.0.1",
     "@types/koa-router": "^7.0.38",
     "@types/koa-static": "^4.0.0",
-    "@types/node": "^10.12.18",
+    "@types/node": "^11.9.0",
     "@types/supertest": "^2.0.7",
     "@typescript-eslint/eslint-plugin": "^1.0.0",
     "@typescript-eslint/eslint-plugin-tslint": "^1.0.0",
