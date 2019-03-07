@@ -8,5 +8,14 @@
   "spellright.documentTypes": [
     "markdown",
     "latex"
-  ]
+  ],
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#ff1493",
+    "titleBar.activeForeground": "#000",
+    "titleBar.inactiveForeground": "#ffffff",
+    "titleBar.inactiveBackground": "#5c0935"
+
+  },
+  "editor.wordWrap": "bounded",
+  "cSpell.enabled": false
 }
