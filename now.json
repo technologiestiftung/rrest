@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "alias":"rrest-flusshygiene",
+  "alias":["rrest-flusshygiene"],
   "type":"docker",
   "scale": {
     "bru1": {
