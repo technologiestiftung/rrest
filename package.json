@@ -7,7 +7,8 @@
     "test": "jest",
     "testWithCoverage": "jest --coverage",
     "dev": "nodemon",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "now": "now && now alias"
   },
   "author": "Fabian Morón Zirfas",
   "license": "MIT",
@@ -32,6 +33,7 @@
     "husky": "^1.3.1",
     "jest": "^24.1.0",
     "nodemon": "^1.18.10",
+    "now": "^14.0.3",
     "server-destroy": "^1.0.1",
     "supertest": "^3.4.2",
     "ts-jest": "^24.0.0",
