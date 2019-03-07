@@ -8,7 +8,7 @@
     "testWithCoverage": "jest --coverage",
     "dev": "nodemon",
     "build": "tsc -p .",
-    "now": "now && now alias"
+    "now": "now --public && now alias"
   },
   "author": "Fabian Morón Zirfas",
   "license": "MIT",
