@@ -1,4 +1,4 @@
-import { ChildProcess, spawn } from 'child_process';
+import { spawn, ChildProcess } from 'child_process';
 import path from 'path';
 
 export interface IResponse {
