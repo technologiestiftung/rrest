@@ -1,4 +1,4 @@
-import { spawn, ChildProcess } from 'child_process';
+import { ChildProcess, spawn } from 'child_process';
 import path from 'path';
 
 export interface IResponse {
@@ -24,15 +24,14 @@ function rprocess(opts: IProcOpts): Promise <IResponse> {
     const rscript: ChildProcess|null = spawn('Rscript', args, options);
     if (rscript === null || rscript.stderr === null || rscript.stdout === null || rscript.stdin === null) {
       throw new Error('rscript spawn returned null');
-    } else {
-
-      rscript.stdout.setEncoding('utf-8');
-      rscript.stdin.setDefaultEncoding('utf-8');
-      rscript.stdin.write(`${data}\r\n`);
-      rscript.stdin.end();
-      rscript.stderr.on('data', (err: Error) => { response.errors += err.toString(); });
-      rscript.stdout.on('data', (chunk: string) => { response.data += chunk; });
-      rscript.on('close', (code) => {
+    }
+    rscript.stdout.setEncoding('utf-8');
+    rscript.stdin.setDefaultEncoding('utf-8');
+    rscript.stdin.write(`${data}\r\n`);
+    rscript.stdin.end();
+    rscript.stderr.on('data', (err: Error) => { response.errors += err.toString(); });
+    rscript.stdout.on('data', (chunk: string) => { response.data += chunk; });
+    rscript.on('close', (code) => {
         if (code === 0) {
           response.code = code;
           response.data = JSON.parse(response.data);
@@ -41,7 +40,6 @@ function rprocess(opts: IProcOpts): Promise <IResponse> {
           reject(Error('non zero exit code'));
         }
       });
-    }
   });
 }
 export default function rexecute(rFilePath: string, indata: object|string = ''): Promise<IResponse> {
