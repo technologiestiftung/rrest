@@ -1,5 +1,11 @@
 # Node Rest API written with Koa that executes R scripts
 
+DEPRECATED: This project is no longer under maintenance. It still exist for the purpose of documentation on how to setup an own API for RScripts. We still suggest using projects like [opencpu](https://www.opencpu.org) instead of running your own system for a purpose like this.  
+
+
+---
+
+
 [![Build Status](https://travis-ci.org/technologiestiftung/rrest.svg?branch=master)](https://travis-ci.org/technologiestiftung/rrest) [![issue shield](https://img.shields.io/github/issues-raw/technologiestiftung/rrest.svg)](https://github.com/technologiestiftung/rrest/issues?utf8=%E2%9C%93&q=) [![Maintainability](https://api.codeclimate.com/v1/badges/2781922c87ab905b1925/maintainability)](https://codeclimate.com/github/technologiestiftung/rrest/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/2781922c87ab905b1925/test_coverage)](https://codeclimate.com/github/technologiestiftung/rrest/test_coverage) [![Greenkeeper badge](https://badges.greenkeeper.io/technologiestiftung/rrest.svg)](https://greenkeeper.io/)
 
 Written with [Koa](https://www.npmjs.com/package/koa) (lightweight Express.js alternative. suitable for small APIs) in Typescript.  
@@ -121,7 +127,6 @@ curl -X "POST" "http://localhost:8080/submit" \
   "foo": "bahh"
 }'
 ```
-
 To stop the running containers
 
 ```bash
@@ -130,17 +135,5 @@ docker-compose down
 
 ## Deployment
 
-(coming soon-ish)
+Could be deployed to a AWS EB Docker setup
 
-----
-
-Currently a test version is running on now.sh under https://rrest-api.now.sh but this url will change with every deploy to now.  
-
-```bash
-curl -X "POST" "https://rrest-api.now.sh/submit" \
-     -H 'Content-Type: application/json; charset=utf-8' \
-     -H 'Cookie: __cfduid=d60281f9214e8dd6efea0075d36f598081548239112' \
-     -d $'{
-  "foo": "bahh"
-}'
-```
