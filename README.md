@@ -1,6 +1,6 @@
 # Node Rest API written with Koa that executes R scripts
 
-DEPRECATED: This project is no longer under maintenance. It still exist for the purpose of documentation on how to setup an own API for RScripts in  child process using Docker, zeit.co/now, Jest, Travis, codeclimate, Koa, nodemon, ts-node and Typescript for development. We still suggest using projects like [opencpu](https://www.opencpu.org) instead of running your own system for a purpose like this.  
+DEPRECATED: This project is no longer under maintenance. It still exist for the purpose of documentation on how to setup an own API for RScripts in  child process using Docker, zeit.co/now, Jest, Travis, codeclimate, Koa, nodemon, husky, ts-node and Typescript for development. We still suggest using projects like [opencpu](https://www.opencpu.org) instead of running your own system for a purpose like this.  
 
 ---
 
